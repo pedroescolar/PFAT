@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE Peliculas SYSTEM "reglas_peliculas.dtd">
+
+<Peliculas>
+	<Pelicula>
+		<caracteristicas_peli tiempo="2" unidades="H" />
+		<titulo>
+			Star Wars
+		</titulo>
+		<director>
+			George Lucas
+		</director>
+		<anio>
+			1978
+		</anio>
+		<genero>
+			Ciencia Ficcion
+		</genero>
+		<actor>
+			Natali Portman
+		</actor>
+		<nacionalidad>
+			Estadounidense
+		</nacionalidad>
+	</Pelicula>
+
+
+	<Pelicula>
+		<caracteristicas_peli tiempo="3" unidades="H" />
+		<titulo>
+			The Lord of the Rings
+		</titulo>
+		<director>
+			Peter Robert Jackson
+		</director>
+		<anio>
+			2003
+		</anio>
+		<genero>
+			Novela
+		</genero>
+		<genero>
+			Fantasia
+		</genero>
+		<actor>
+			Vigo Mortensen
+		</actor>
+		<nacionalidad>
+			Uruguayo
+		</nacionalidad>
+	</Pelicula>
+
+</Peliculas>
+

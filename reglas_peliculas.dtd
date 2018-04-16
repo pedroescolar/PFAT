@@ -1,0 +1,13 @@
+<!ELEMENT Peliculas (Pelicula+) >
+<!ELEMENT Pelicula (caracteristicas_peli, titulo, director+, anio, genero+, actor+, nacionalidad+) >
+<!ELEMENT genero (#PCDATA) >
+<!ELEMENT actor (#PCDATA) >
+<!ELEMENT director (#PCDATA) >
+<!ELEMENT anio (#PCDATA) >
+<!ELEMENT titulo (#PCDATA) >
+<!ELEMENT nacionalidad (#PCDATA) >
+<!ELEMENT caracteristicas_peli EMPTY>
+<!ATTLIST caracteristicas_peli
+	
+	tiempo	CDATA #REQUIRED 
+	unidades (H|MIN|SEG) "MIN" >
