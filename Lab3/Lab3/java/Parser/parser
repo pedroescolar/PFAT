@@ -1,0 +1,120 @@
+package Parser;
+
+import java_cup.runtime.*;
+import AST.*;
+
+parser code {:
+public void syntax_error(Symbol s){
+	report_error("Error de sintaxis en linea " + s.left, null);
+}
+
+public void unrecovered_syntax_error(Symbol s) throws
+	java.lang.Exception{
+	report_fatal_error("", null);
+}
+:};
+
+terminal IF, THEN, ELSE, END, WHILE, PLOT, DO, NOT, AND, OR, SIZE, PROG,
+INT2REAL, REAL2INT, VARS, SENO, COSENO, PC, ASOP, MENORQUE,
+MAYORQUE, MAS, DIV, POR, PAREN, TESIS, IGUALQUE, COMA, MENOS, UMENOS, PI;
+
+terminal Integer CENT, TIPO;
+terminal Boolean CLOG;
+terminal Double CREAL;
+terminal String IDENT, COLOR;
+
+non terminal Prog Prog;
+non terminal Vdef Vdef;
+non terminal Vars Vars;
+non terminal Decl Decl;
+non terminal Size Size;
+non terminal Lvar Lvar;
+non terminal Inp Inp;
+non terminal Sent Sent;
+non terminal SentSimp SentSimp;
+non terminal Asign Asign;
+non terminal Cond Cond;
+non terminal Repet Repet;
+non terminal Plot Plot;
+non terminal Exp Exp;
+
+precedence left OR;
+precedence left AND;
+precedence left NOT;
+precedence right IGUALQUE;
+precedence right MENORQUE;
+precedence right MAYORQUE;
+precedence left MAS;
+precedence left MENOS;
+precedence left POR;
+precedence left DIV;
+precedence left UMENOS;
+
+start with Prog;
+
+Prog ::= PROG IDENT:i Inp:inp Vars:vars Size:size Sent:sent {:RESULT = new Prog(i, inp, vars, size, sent); :};
+
+Inp ::= PAREN Lvar:lvar TESIS {:RESULT = new Inp1(lvar); :}
+	  |	{:RESULT = new Inp2(); :};
+
+Vars ::= VARS Vdef:vdef {:RESULT = new Vars1(vdef); :}
+		| {:RESULT = new Vars2(); :};
+
+Vdef ::= Decl:decl PC {:RESULT = new Vdef1(decl); :}
+		| Decl:decl PC Vdef:vdef {:RESULT = new Vdef2(decl, vdef); :};
+
+Decl ::= TIPO:t Lvar:lvar {:RESULT = new Decl(t, lvar); :};
+
+Lvar ::= IDENT:i {:RESULT = new Lvar1(i); :}
+		| IDENT:i COMA Lvar:lvar {:RESULT = new Lvar2(i, lvar); :};
+
+Size ::= SIZE PAREN Exp:exp1 COMA Exp:exp2 TESIS PC {:RESULT = new Size(exp1, exp2); :};
+
+Sent ::= SentSimp:sentsimp PC Sent:sent {:RESULT = new Sent1(sentsimp, sent); :}
+		| SentSimp:sentsimp PC {:RESULT = new Sent2(sentsimp); :};
+
+SentSimp ::= Asign:asign {:RESULT = new SentSimp1(asign); :}
+			| Cond:cond {:RESULT = new SentSimp2(cond); :}
+			| Repet:repet {:RESULT = new SentSimp3(repet); :}
+			| Plot:plot {:RESULT = new SentSimp4(plot); :};
+
+Asign ::= IDENT:i ASOP Exp:exp {:RESULT = new Asign(i, exp); :};
+
+Cond ::= IF Exp:exp THEN Sent:sent END {:RESULT = new Cond1(exp, sent); :}
+		| IF Exp:exp THEN Sent:sent1 ELSE Sent:sent2 END {:RESULT = new Cond2(exp, sent1, sent2); :};
+
+Repet ::= WHILE Exp:exp DO Sent:sent END {:RESULT = new Repet(exp, sent); :};
+
+Plot ::= PLOT PAREN COLOR:color COMA Exp:exp1 COMA Exp:exp2 TESIS {:RESULT = new Plot(color, exp1, exp2); :};
+
+Exp ::= IDENT:i {:RESULT = new Exp1(i); :}
+		| PAREN Exp:exp TESIS {:RESULT = new Exp2(exp); :}
+		| CENT:cent {:RESULT = new Exp3(cent.intValue()); :}
+
+		| Exp:exp1 MAS Exp:exp2 {:RESULT = new Exp4(exp1, exp2); :}
+		| Exp:exp1 MENOS Exp:exp2 {:RESULT = new Exp5(exp1, exp2); :} 
+		| Exp:exp1 POR Exp:exp2 {:RESULT = new Exp6(exp1, exp2); :}
+		| Exp:exp1 DIV Exp:exp2 {:RESULT = new Exp7(exp1, exp2); :}
+		| MENOS Exp:exp {:RESULT = new Exp8(exp); :} %prec UMENOS
+
+		| REAL2INT PAREN Exp:exp TESIS {:RESULT = new Exp9(exp); :}
+		| CREAL:creal {:RESULT = new Exp10(creal.doubleValue()); :}
+		| INT2REAL PAREN Exp:exp TESIS {:RESULT = new Exp11(exp); :}
+
+		| SENO PAREN Exp:exp TESIS {:RESULT = new Exp12(exp); :}
+		| COSENO PAREN Exp:exp TESIS {:RESULT = new Exp13(exp); :}
+
+		| CLOG:clog {:RESULT = new Exp14(clog.booleanValue()); :}
+
+		| Exp:exp1 AND Exp:exp2 {:RESULT = new Exp15(exp1, exp2); :}
+		| Exp:exp1 OR Exp:exp2 {:RESULT = new Exp16(exp1, exp2); :}
+		| NOT Exp:exp {:RESULT = new Exp17(exp); :}
+		| Exp:exp1 IGUALQUE Exp:exp2 {:RESULT = new Exp18(exp1, exp2); :}
+		| Exp:exp1 MENORQUE Exp:exp2 {:RESULT = new Exp19(exp1, exp2); :}
+		| Exp:exp1 MAYORQUE Exp:exp2 {:RESULT = new Exp20(exp1, exp2); :}
+		| PI {:RESULT = new Exp21(); :};
+
+
+
+
+

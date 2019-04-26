@@ -1,0 +1,13 @@
+[luis@armonica Ejem10]$ java -cp ../../class/ Main Seno.prg Seno
+Codigo generado en fichero Seno.java
+[luis@armonica Ejem10]$ javac -cp ../../class/ *.java
+[luis@armonica Ejem10]$ java -cp ../../class/:. Seno 600 1 prueba1.bmp
+[luis@armonica Ejem10]$ java -cp ../../class/:. Seno 600 2 prueba2.bmp
+[luis@armonica Ejem10]$ java -cp ../../class/:. Seno 600 3 prueba3.bmp
+[luis@armonica Ejem10]$ java -cp ../../class/:. Seno 600 4 prueba4.bmp
+[luis@armonica Ejem10]$ java -cp ../../class/:. Seno 600 5 prueba5.bmp
+[luis@armonica Ejem10]$ java -cp ../../class/:. Seno 600 6 prueba6.bmp
+[luis@armonica Ejem10]$ java -cp ../../class/:. Seno 600 7 prueba7.bmp
+[luis@armonica Ejem10]$ java -cp ../../class/:. Seno 600 8 prueba8.bmp
+
+

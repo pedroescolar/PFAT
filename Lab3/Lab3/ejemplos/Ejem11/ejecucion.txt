@@ -1,0 +1,5 @@
+[luis@armonica Ejem11]$ java -cp ../../class/ Main Zigzag.prg Zigzag
+Codigo generado en fichero Zigzag.java
+[luis@armonica Ejem11]$ javac -cp ../../class/ *.java
+[luis@armonica Ejem11]$ java -cp ../../class/:. Zigzag 900 prueba.bmp
+

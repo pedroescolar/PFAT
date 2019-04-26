@@ -1,0 +1,82 @@
+package Lexer;
+
+import Errors.LexerException;
+import Parser.sym;
+
+%%
+%{
+private java_cup.runtime.Symbol tok(int k, Object value) {
+  System.out.println("Token: " + k);
+  return new java_cup.runtime.Symbol(k, yyline, 0, value); 
+}
+%}
+
+%public
+%cup
+%line
+%yylexthrow{
+LexerException
+%yylexthrow} 
+%eofval{
+{return tok(sym.EOF, null); }
+%eofval}
+
+letra= [a-zA-Z]
+colores= (white|grey|black|red|green|blue|yellow)
+digito= [0-9]
+reales= ({digito}*"."{digito}+|{digito}+"."|({digito}*"."{digito}+|{digito}+".")(e|E)("+"|"-")*{digito}+|{digito}*(e|E)("+"|"-")*{digito}+)
+
+%%
+
+if		{return tok(sym.IF, null); }
+then	{return tok(sym.THEN, null); }
+else	{return tok(sym.ELSE, null); }
+end		{return tok(sym.END, null); }
+while	{return tok(sym.WHILE, null); }
+plot	{return tok(sym.PLOT, null); }
+do		{return tok(sym.DO, null); }
+not		{return tok(sym.NOT, null);	}
+and		{return tok(sym.AND, null); }
+or		{return tok(sym.OR, null); }
+size	{return tok(sym.SIZE, null); }
+PF2018	{return tok(sym.PROG, null); }
+Int2Real	{return tok(sym.INT2REAL, null); }
+Real2Int	{return tok(sym.REAL2INT, null); }
+vars	{return tok(sym.VARS, null); }
+seno	{return tok(sym.SENO, null); }
+coseno	{return tok(sym.COSENO, null); }
+pi 		{return tok(sym.PI, null); }
+int 	{return tok(sym.TIPO, new Integer(1)); }
+bool 	{return tok(sym.TIPO, new Integer(2)); }
+real 	{return tok(sym.TIPO, new Integer(3)); }
+";"		{return tok(sym.PC, null); }
+":="	{return tok(sym.ASOP, null); }
+"<"		{return tok(sym.MENORQUE, null); }
+">"		{return tok(sym.MAYORQUE, null); }
+"+"		{return tok(sym.MAS, null); }
+"/"		{return tok(sym.DIV, null); }
+"*"		{return tok(sym.POR, null); }
+"("		{return tok(sym.PAREN, null); }
+")"		{return tok(sym.TESIS, null); }
+"="		{return tok(sym.IGUALQUE, null); }
+","		{return tok(sym.COMA, null); }
+"-"		{return tok(sym.MENOS, null); }
+{colores}	{return tok(sym.COLOR, yytext()); }
+{reales} 	{return tok(sym.CREAL, new Double(yytext())); }
+{digito}+	{return tok(sym.CENT, new Integer(yytext())); }
+true	{return tok(sym.CLOG, new Boolean(true)); }
+false	{return tok(sym.CLOG, new Boolean(false)); }
+
+{letra}({letra}|{digito})*	{return tok(sym.IDENT, yytext()); }
+
+
+(" "|\t|\r|\n)+	{ }
+.		{throw new LexerException("Caracter Ilegal en linea " + yyline); }
+
+
+
+
+
+
+
+

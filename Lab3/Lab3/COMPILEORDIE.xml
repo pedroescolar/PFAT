@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Grupo nick="COMPILEORDIE">
+  <Alumno>
+    <NIU><![CDATA[100315226]]></NIU>
+    <Apellidos><![CDATA[ESCOLAR SANCHEZ]]></Apellidos>
+    <Nombre><![CDATA[PEDRO JOSE]]></Nombre>
+    <GrupoReducido><![CDATA[g71]]></GrupoReducido>
+  </Alumno>
+  <Alumno>
+    <NIU><![CDATA[100317893]]></NIU>
+    <Apellidos><![CDATA[KORTZ]]></Apellidos>
+    <Nombre><![CDATA[MADRU JESAJA]]></Nombre>
+    <GrupoReducido><![CDATA[g71]]></GrupoReducido>
+  </Alumno>
+  <Alumno>
+    <NIU><![CDATA[100317102]]></NIU>
+    <Apellidos><![CDATA[CASADO MEDINA]]></Apellidos>
+    <Nombre><![CDATA[ALBERTO]]></Nombre>
+    <GrupoReducido><![CDATA[g71]]></GrupoReducido>
+  </Alumno>
+</Grupo>

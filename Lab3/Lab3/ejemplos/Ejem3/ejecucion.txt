@@ -1,0 +1,6 @@
+[luis@armonica Ejem3]$ java -cp ../../class/ Main Diagonal2.prg Diagonal2
+Codigo generado en fichero Diagonal2.java
+[luis@armonica Ejem3]$ javac -cp ../../class/ *.java 
+[luis@armonica Ejem3]$ java -cp ../../class/:. Diagonal2 150 prueba.bmp
+
+

@@ -1,0 +1,7 @@
+[luis@armonica Ejem7]$ java -cp ../../class/ Main Triangulo2.prg Triangulo2
+Codigo generado en fichero Triangulo2.java
+[luis@armonica Ejem7]$ javac -cp ../../class/ *.java 
+[luis@armonica Ejem7]$ java -cp ../../class/:. Triangulo2 400 400 250 prueba.bmp
+
+
+

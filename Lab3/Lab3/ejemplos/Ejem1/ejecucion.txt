@@ -1,0 +1,7 @@
+[luis@armonica Ejem1]$ java -cp ../../class/ Main Rectangulo.prg Rectangulo
+Codigo generado en fichero Rectangulo.java
+[luis@armonica Ejem1]$ javac -cp ../../class/ *.java
+[luis@armonica Ejem1]$ java -cp ../../class/:. Rectangulo 200 100 prueba.bmp
+[luis@armonica Ejem1]$ java -cp ../../class/:. Rectangulo 100 200 prueba2.bmp
+
+
